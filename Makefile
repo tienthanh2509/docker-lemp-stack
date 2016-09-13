@@ -1,0 +1,1 @@
+source build/docker.sh

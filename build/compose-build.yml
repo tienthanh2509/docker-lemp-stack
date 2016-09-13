@@ -1,0 +1,14 @@
+backup:
+  build: backup
+wwwdata:
+  build: wwwdata
+nginx:
+  build: nginx
+php56:
+  build: php56
+php70:
+  build: php70
+mariadb:
+  build: mariadb
+memcached:
+  build: memcached
