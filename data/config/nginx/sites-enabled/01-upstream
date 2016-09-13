@@ -1,6 +1,9 @@
-upstream php70 {
-    server php70:9001;
-}
+# Upstream to abstract backend connection(s) for php
+
 upstream php56 {
     server php56:9002;
+}
+
+upstream php70 {
+    server php70:9001;
 }
