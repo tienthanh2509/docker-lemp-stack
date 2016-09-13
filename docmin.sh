@@ -2,31 +2,29 @@
 
 # Docker binary
 BIN_DOCKER="docker"
-BIN_DOCKER_COMPOSE="docker-compose"
-COMPOSE_FILE_BUILD = 'compose-build.yml'
-COMPOSE_FILE_UP_DEVELOPMENT = 'compose-up-development.yml'
-COMPOSE_FILE_UP_PRODUCTION = 'compose-up-production.yml'
+BIN_DOCKER_COMPOSE="build/docker-compose"
+COMPOSE_FILE_BUILD="build/compose-build.yml"
+COMPOSE_FILE_UP_DEVELOPMENT="compose-up-development.yml"
+COMPOSE_FILE_UP_PRODUCTION="compose-up-production.yml"
 
 # ENV
-NAMESPACE="$1"
-CMD="$2"
-ARGS="$3"
+NAMESPACE="tdmu"
 
 #--------------------------------------------------------
 # Docker container name with namespace
 # Main service
 CONTAINER_NGINX="nginx"
-CONTAINER_PHP56=$(NAMESPACE)_php56
-CONTAINER_PHP70=$(NAMESPACE)_php70
+CONTAINER_PHP56=$NAMESPACE"_php56"
+CONTAINER_PHP70=$NAMESPACE"_php70"
 # Data
-CONTAINER_BACKUP=$(NAMESPACE)_backup
-CONTAINER_MARIADB=$(NAMESPACE)_mariadb
-CONTAINER_WWWDATA=$(NAMESPACE)_wwwdata
+CONTAINER_BACKUP=$NAMESPACE"_backup"
+CONTAINER_MARIADB=$NAMESPACE"_mariadb"
+CONTAINER_WWWDATA=$NAMESPACE"_wwwdata"
 # Cache service
-CONTAINER_MEMCACHED=$(NAMESPACE)_memcached
-CONTAINER_REDIS=$(NAMESPACE)_redis
+CONTAINER_MEMCACHED=$NAMESPACE"_memcached"
+CONTAINER_REDIS=$NAMESPACE"_redis"
 # Dev Tools
-CONTAINER_MAILCATCHER=$(NAMESPACE)_mailcatcher
+CONTAINER_MAILCATCHER=$NAMESPACE"_mailcatcher"
 
 #--------------------------------------------------------
 # Setup Colours
@@ -54,8 +52,7 @@ Reset="tput sgr0"
 # Coloured-echo.
 # Argument $1 = message
 # Argument $2 = color
-cecho ()
-{
+cecho () {
 	color=$2
 	message=$1
 	echo -e "$color$message" ; $Reset
@@ -126,6 +123,7 @@ do
 	cecho "--------------------------------------------------------" $boldyellow
 	echo 'Support:'
 	echo 'Nginx, PHP 5.6/7, MariaDB, Memcached, Redis'
+	echo "Current namespace: $NAMESPACE"
 	cecho "--------------------------------------------------------" $boldyellow
 	echo '# Deploy'
 	echo '1. pull          - Pull all the newest images'
@@ -170,3 +168,5 @@ do
 
 done
 }
+
+show_menu
